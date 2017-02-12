@@ -108,10 +108,14 @@ var GoogleChooser = function (_React$Component) {
   }, {
     key: 'createPicker',
     value: function createPicker(oauthToken) {
-      var view = window.google.picker.ViewId[this.props.viewId];
+      var view = new google.picker.DocsView(this.props.viewId);
 
       if (!view) {
         throw new Error('Can\'t find view by viewId');
+      }
+
+      if (this.props.parentId) {
+        view.setParent(this.props.parentId);
       }
 
       var picker = new window.google.picker.PickerBuilder().addView(view).setOAuthToken(oauthToken).setCallback(this.props.onChange);
@@ -130,10 +134,6 @@ var GoogleChooser = function (_React$Component) {
 
       if (this.props.multiselect) {
         picker.enableFeature(window.google.picker.Feature.MULTISELECT_ENABLED);
-      }
-
-      if (this.props.parentId) {
-        picker.setParent(this.props.parentId);
       }
 
       picker.build().setVisible(true);

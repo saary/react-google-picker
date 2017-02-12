@@ -96,11 +96,15 @@ export default class GoogleChooser extends React.Component {
   }
 
   createPicker(oauthToken) {
-    const view = window.google.picker.ViewId[this.props.viewId];
+    const view = new google.picker.DocsView(this.props.viewId);
 
     if (!view) {
       throw new Error('Can\'t find view by viewId');
     }
+
+    if (this.props.parentId) {
+      view.setParent(this.props.parentId);
+    }    
 
     const picker = new window.google.picker.PickerBuilder()
                              .addView(view)
@@ -121,10 +125,6 @@ export default class GoogleChooser extends React.Component {
 
     if (this.props.multiselect) {
       picker.enableFeature(window.google.picker.Feature.MULTISELECT_ENABLED)
-    }
-
-    if (this.props.parentId) {
-      picker.setParent(this.props.parentId);
     }
 
     picker.build()
