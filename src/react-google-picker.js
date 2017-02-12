@@ -10,9 +10,10 @@ export default class GoogleChooser extends React.Component {
   static propTypes = {
     children: React.PropTypes.node,
     clientId: React.PropTypes.string.isRequired,
-    developerKey: React.PropTypes.string.isRequired,
+    developerKey: React.PropTypes.string,
     scope: React.PropTypes.array,
     viewId: React.PropTypes.string,
+    parentId: React.PropTypes.string,
     authImmediate: React.PropTypes.bool,
     origin: React.PropTypes.string,
     onChange: React.PropTypes.func,
@@ -61,7 +62,7 @@ export default class GoogleChooser extends React.Component {
   }
 
   isGooglePickerReady() {
-    return !!window.google.picker;
+    return !!(window.google && window.google.picker);
   }
 
   onApiLoad() {
@@ -104,8 +105,11 @@ export default class GoogleChooser extends React.Component {
     const picker = new window.google.picker.PickerBuilder()
                              .addView(view)
                              .setOAuthToken(oauthToken)
-                             .setDeveloperKey(this.props.developerKey)
                              .setCallback(this.props.onChange);
+
+    if (this.props.developerKey) {
+      picker.setDeveloperKey(this.props.developerKey);
+    }
 
     if (this.props.origin) {
       picker.setOrigin(this.props.origin);
@@ -117,6 +121,10 @@ export default class GoogleChooser extends React.Component {
 
     if (this.props.multiselect) {
       picker.enableFeature(window.google.picker.Feature.MULTISELECT_ENABLED)
+    }
+
+    if (this.props.parentId) {
+      picker.setParent(this.props.parentId);
     }
 
     picker.build()
