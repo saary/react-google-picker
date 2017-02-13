@@ -108,7 +108,8 @@ var GoogleChooser = function (_React$Component) {
   }, {
     key: 'createPicker',
     value: function createPicker(oauthToken) {
-      var view = new google.picker.DocsView(this.props.viewId);
+      //window.google.picker.ViewId[this.props.viewId]
+      var view = new google.picker.DocsView(window.google.picker.ViewId[this.props.viewId]);
 
       if (!view) {
         throw new Error('Can\'t find view by viewId');
