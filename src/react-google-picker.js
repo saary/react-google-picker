@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import loadScript from 'load-script';
 
 const GOOGLE_SDK_URL = 'https://apis.google.com/js/api.js';
@@ -8,18 +9,18 @@ let scriptLoadingStarted = false;
 export default class GoogleChooser extends React.Component {
 
   static propTypes = {
-    children: React.PropTypes.node,
-    clientId: React.PropTypes.string.isRequired,
-    developerKey: React.PropTypes.string,
-    scope: React.PropTypes.array,
-    viewId: React.PropTypes.string,
-    parentId: React.PropTypes.string,
-    authImmediate: React.PropTypes.bool,
-    origin: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    multiselect: React.PropTypes.bool,
-    navHidden: React.PropTypes.bool,
-    disabled: React.PropTypes.bool
+    children: PropTypes.node,
+    clientId: PropTypes.string.isRequired,
+    developerKey: PropTypes.string,
+    scope: PropTypes.array,
+    viewId: PropTypes.string,
+    parentId: PropTypes.string,
+    authImmediate: PropTypes.bool,
+    origin: PropTypes.string,
+    onChange: PropTypes.func,
+    multiselect: PropTypes.bool,
+    navHidden: PropTypes.bool,
+    disabled: PropTypes.bool
   };
 
   static defaultProps = {
