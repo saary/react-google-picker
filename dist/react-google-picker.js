@@ -10,6 +10,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _loadScript = require('load-script');
 
 var _loadScript2 = _interopRequireDefault(_loadScript);
@@ -108,7 +112,6 @@ var GoogleChooser = function (_React$Component) {
   }, {
     key: 'createPicker',
     value: function createPicker(oauthToken) {
-      //window.google.picker.ViewId[this.props.viewId]
       var view = new google.picker.DocsView(window.google.picker.ViewId[this.props.viewId]);
 
       if (!view) {
@@ -158,18 +161,18 @@ var GoogleChooser = function (_React$Component) {
 }(_react2.default.Component);
 
 GoogleChooser.propTypes = {
-  children: _react2.default.PropTypes.node,
-  clientId: _react2.default.PropTypes.string.isRequired,
-  developerKey: _react2.default.PropTypes.string,
-  scope: _react2.default.PropTypes.array,
-  viewId: _react2.default.PropTypes.string,
-  parentId: _react2.default.PropTypes.string,
-  authImmediate: _react2.default.PropTypes.bool,
-  origin: _react2.default.PropTypes.string,
-  onChange: _react2.default.PropTypes.func,
-  multiselect: _react2.default.PropTypes.bool,
-  navHidden: _react2.default.PropTypes.bool,
-  disabled: _react2.default.PropTypes.bool
+  children: _propTypes2.default.node,
+  clientId: _propTypes2.default.string.isRequired,
+  developerKey: _propTypes2.default.string,
+  scope: _propTypes2.default.array,
+  viewId: _propTypes2.default.string,
+  parentId: _propTypes2.default.string,
+  authImmediate: _propTypes2.default.bool,
+  origin: _propTypes2.default.string,
+  onChange: _propTypes2.default.func,
+  multiselect: _propTypes2.default.bool,
+  navHidden: _propTypes2.default.bool,
+  disabled: _propTypes2.default.bool
 };
 GoogleChooser.defaultProps = {
   onChange: function onChange() {},
